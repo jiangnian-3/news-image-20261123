@@ -2,8 +2,8 @@ import { readFileSync, mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
-import { geoPath, geoNaturalEarth1 } from './vendor/node_modules/d3-geo/src/index.js';
-import { feature } from './vendor/node_modules/topojson-client/src/index.js';
+const { geoPath, geoNaturalEarth1 } = createRequire(import.meta.url)('./vendor/node_modules/d3-geo/index.cjs');
+const { feature } = createRequire(import.meta.url)('./vendor/node_modules/topojson-client/index.cjs');
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const W = 1024;
@@ -91,7 +91,7 @@ export const DATE_CHECK = [
 ];
 
 const require = createRequire(import.meta.url);
-const { initWasm, Resvg } = require('./vendor/resvg/index.js');
+const { initWasm, Resvg } = require('./vendor/resvg/index.cjs');
 const FONT_FILES = {
   serif: join(ROOT, 'assets/fonts/source-serif-4/source-serif-4-bold.ttf'),
   sans: join(ROOT, 'assets/fonts/source-sans-3/source-sans-3-regular.ttf'),
