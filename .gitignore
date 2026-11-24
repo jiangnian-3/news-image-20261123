@@ -1,0 +1,7 @@
+out/
+output/
+.test-output-*/
+.test-repeat-*/
+*.png
+builder.log
+builder-resume.log
