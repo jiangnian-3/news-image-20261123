@@ -344,6 +344,110 @@ function buildSvg() {
     }
   }
 
+  function heroIllustration(story, x, y, width, height) {
+    if (story.id === 1) {
+      rect(x, y, width, height, '#163746', 5);
+      for (let i = 0; i < 5; i++) {
+        const px = x + 20 + i * 44;
+        rule(px, y + 8, px, y + 16, '#668591', 0.9);
+        rule(px, y + height - 14, px, y + height - 7, '#668591', 0.9);
+      }
+      circle(x + width / 2, y + height / 2, 26, '#234f61', '#dbad60', 1.5);
+      rect(x + width / 2 - 32, y + height / 2 - 21, 64, 42, '#d9b86e', 7, '#fff0c9', 1.2);
+      rect(x + width / 2 - 22, y + height / 2 - 12, 44, 24, '#284c5b', 4);
+      for (let row = 0; row < 2; row++) for (let col = 0; col < 4; col++) {
+        circle(x + width / 2 - 14 + col * 9, y + height / 2 - 5 + row * 10, 1.8, '#e8ca84');
+      }
+      for (let i = 0; i < 4; i++) {
+        const yy = y + 22 + i * 9;
+        rule(x + 8, yy, x + 45, yy, '#587f8d', 0.8);
+        rule(x + width - 45, yy, x + width - 8, yy, '#587f8d', 0.8);
+      }
+      return;
+    }
+    if (story.id === 2) {
+      rect(x, y, width, height, '#bed5d9', 5);
+      circle(x + 35, y + 27, 17, '#efd39a');
+      rect(x, y + height - 17, width, 17, '#9f503f', 0);
+      const base = y + height - 17;
+      add(`<path d="M${fmt(x + 8)},${fmt(base)}L${fmt(x + 8)},${fmt(y + 38)}L${fmt(x + 34)},${fmt(y + 29)}L${fmt(x + 58)},${fmt(y + 38)}L${fmt(x + width - 10)},${fmt(y + 38)}L${fmt(x + width - 10)},${fmt(base)}Z" fill="#e5ddc9" stroke="#775d51" stroke-width="1.1"/>`);
+      for (let i = 0; i < 7; i++) {
+        const px = x + 27 + i * 25;
+        rect(px, y + 42, 4, 27, '#aa9780', 1);
+        rect(px - 5, y + 39, 14, 3, '#786957', 1);
+      }
+      const towerX = x + width - 48;
+      rect(towerX, y + 15, 27, 54, '#e8dfcb', 1, '#765e4e', 1);
+      add(`<path d="M${fmt(towerX - 4)},${fmt(y + 16)}L${fmt(towerX + 13)},${fmt(y + 6)}L${fmt(towerX + 31)},${fmt(y + 16)}Z" fill="#9c5947" stroke="#765e4e" stroke-width="1"/>`);
+      circle(towerX + 13.5, y + 34, 8, '#f4ebd5', '#765e4e', 1.1);
+      rule(towerX + 13.5, y + 28, towerX + 13.5, y + 34, '#523f38', 1.2);
+      rule(towerX + 13.5, y + 34, towerX + 18, y + 37, '#523f38', 1.1);
+      for (let i = 0; i < 3; i++) rect(towerX + 5 + i * 8, y + 48, 4, 15, '#9b775e', 1);
+      return;
+    }
+    rect(x, y, width, height, '#183b4d', 5);
+    for (let i = 0; i < 8; i++) {
+      const px = x + 13 + i * 28;
+      rect(px, y + 8, 12, 20, ['#c45b49', '#e1c174', '#d6e4e1', '#688597'][i % 4], 1);
+      rule(px + 6, y + 9, px + 6, y + 27, '#f2ecdf', 0.6);
+    }
+    circle(x + width / 2, y + 29, 17, '#254f62', '#e3bc71', 1.2);
+    circle(x + width / 2, y + 29, 10, 'none', '#d6e3df', 0.8);
+    rule(x + width / 2 - 9, y + 29, x + width / 2 + 9, y + 29, '#d6e3df', 0.8);
+    rule(x + width / 2, y + 20, x + width / 2, y + 38, '#d6e3df', 0.8);
+    add(`<path d="M${fmt(x + 14)},${fmt(y + height - 7)}Q${fmt(x + width / 2)},${fmt(y + 31)} ${fmt(x + width - 14)},${fmt(y + height - 7)}L${fmt(x + width - 14)},${fmt(y + height - 2)}L${fmt(x + 14)},${fmt(y + height - 2)}Z" fill="#d6e0dc" stroke="#e1bd70" stroke-width="1.2"/>`);
+    for (let i = 0; i < 6; i++) {
+      const px = x + 28 + i * 34;
+      circle(px, y + 46, 3, '#e2b95e');
+      rect(px - 4, y + 49, 8, 10, '#a6b8b5', 2);
+    }
+  }
+
+  function cardIllustration(story, x, y, width, height) {
+    const region = REGION_COLOR[story.region];
+    const tint = { EUROPE: '#dce7e8', ASIA: '#efe0d6', AMERICAS: '#dbe4e8', 'MIDDLE EAST': '#f0e2c8', AFRICA: '#e0e8dc', OCEANIA: '#e6dfee' }[story.region] || '#dce7e8';
+    rect(x, y, width, height, tint, 5, region, 0.8);
+    rect(x, y, width, 4, region, 2);
+    circle(x + width / 2, y + height / 2 + 2, 18, '#fbf8f1', '#c7c0b4', 0.7);
+    if (story.id === 4) {
+      rule(x + 7, y + height - 8, x + width - 7, y + height - 8, '#8d9aa0', 1.5);
+      for (let i = 0; i < 4; i++) circle(x + 10 + i * 10, y + height - 8, 1.2, '#b45643');
+      circle(x + 9, y + 11, 3, '#fffdf7'); circle(x + 16, y + 11, 2, '#fffdf7');
+    } else if (story.id === 5) {
+      circle(x + width - 9, y + 10, 5, '#e0bd73', '#9a7133', 0.8);
+      rule(x + width - 11, y + 10, x + width - 7, y + 10, '#9a7133', 0.8);
+    } else if (story.id === 6) {
+      for (let i = 0; i < 8; i++) {
+        const angle = Math.PI * 2 * i / 8;
+        const cx = x + width / 2 + Math.cos(angle) * 22;
+        const cy = y + height / 2 + 2 + Math.sin(angle) * 19;
+        circle(cx, cy, 1.8, '#b84436');
+      }
+    } else if (story.id === 7) {
+      circle(x + width - 11, y + 10, 8, 'none', '#718b91', 0.8);
+      circle(x + width - 11, y + 10, 3, '#b65242');
+      rule(x + width - 20, y + 10, x + width - 2, y + 10, '#718b91', 0.7);
+    } else if (story.id === 8) {
+      circle(x + 10, y + height - 10, 5, '#e0bd73', '#9a7133', 0.8);
+      circle(x + width - 9, y + 10, 4, '#e0bd73', '#9a7133', 0.8);
+    } else if (story.id === 9) {
+      circle(x + 9, y + 10, 3, '#b65242'); circle(x + width - 9, y + height - 9, 3, '#315c70');
+    } else if (story.id === 10) {
+      circle(x + width - 10, y + 10, 6, '#fbf8f1', '#516b58', 1);
+      rect(x + width - 12, y + 7, 4, 10, '#516b58', 0); rect(x + width - 15, y + 10, 10, 4, '#516b58', 0);
+    } else if (story.id === 11) {
+      for (let i = 0; i < 3; i++) rect(x + 5 + i * 7, y + 6, 3, 6, '#e0bd73', 0.5);
+    } else if (story.id === 12) {
+      add(`<path d="M${fmt(x + 4)},${fmt(y + height - 6)}L${fmt(x + 14)},${fmt(y + height - 24)}L${fmt(x + 22)},${fmt(y + height - 13)}L${fmt(x + 31)},${fmt(y + height - 28)}L${fmt(x + width - 3)},${fmt(y + height - 6)}Z" fill="#93aeb4" stroke="#6d8990" stroke-width="0.8"/>`);
+      circle(x + 8, y + 11, 2.2, '#fffdf7'); circle(x + width - 9, y + 17, 1.8, '#fffdf7');
+    } else if (story.id === 13) {
+      circle(x + width - 11, y + height - 10, 5, 'none', '#648399', 1);
+      circle(x + width - 11, y + height - 10, 1.8, '#b65242');
+      for (let i = 0; i < 3; i++) circle(x + 9 + i * 7, y + 11, 1.2, '#587b8a');
+    }
+    icon(story.icon, x + 4, y + 5, Math.min(width, height) - 10, region);
+  }
+
   add(`<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`);
   add('<title>Monday 23 November 2026: a world-news front page</title>');
   add('<desc>Thirty-six sourced stories across seven regions, with dated reports, map index, event exclusions and attributed claims.</desc>');
@@ -383,37 +487,40 @@ function buildSvg() {
     text(`${region} ${count}`, x + 10, barY + 13.5, region === 'MIDDLE EAST' ? 7.2 : 7.7, 'bold', PALETTE.ink, regionCell - 16);
   });
 
-  const heroY = 218;
-  const heroH = 194;
+  const heroY = 233;
+  const heroH = 179;
+  const heroArtH = Math.round(heroH * 0.4);
   const heroX = 28;
   const heroGap = 8;
   const heroW = 230;
   STORIES.filter((story) => story.kind === 'hero').forEach((story, index) => {
     const x = heroX + index * (heroW + heroGap);
     rect(x, heroY, heroW, heroH, PALETTE.card, 5, '#cfc5b5', 0.8);
+    heroIllustration(story, x + 1, heroY + 1, heroW - 2, heroArtH);
     rect(x, heroY, 4, heroH, REGION_COLOR[story.region], 2);
-    icon(story.icon, x + heroW - 48, heroY + 9, 34, REGION_COLOR[story.region]);
-    text(`${String(story.id).padStart(2, '0')}  ·  ${story.region}  ·  REPORTED`, x + 13, heroY + 20, 7.1, 'bold', REGION_COLOR[story.region], heroW - 64);
-    const titleLines = block(story.title, x + 13, heroY + 62, 14, 'serif', PALETTE.ink, heroW - 25, 3, 16.6);
-    const deckY = heroY + 62 + titleLines * 16.6;
-    block(story.summary, x + 13, deckY, 9.1, 'sans', PALETTE.ink, heroW - 26, 5, 11.1);
-    text(story.source, x + 13, heroY + heroH - 10, 6.8, 'bold', PALETTE.muted, heroW - 25);
+    rect(x + 8, heroY + 7, 145, 15, PALETTE.dark, 3);
+    text(`${String(story.id).padStart(2, '0')}  ·  ${story.region}  ·  REPORTED`, x + 13, heroY + 17, 7.1, 'bold', PALETTE.white, heroW - 27);
+    const titleLines = block(story.title, x + 13, heroY + heroArtH + 19, 13.5, 'serif', PALETTE.ink, heroW - 25, 3, 15.3);
+    const deckY = heroY + heroArtH + 26 + titleLines * 15.3;
+    block(story.summary, x + 13, deckY, 8.7, 'sans', PALETTE.ink, heroW - 26, 4, 11.0);
+    text(story.source, x + 13, heroY + heroH - 8, 6.8, 'bold', PALETTE.muted, heroW - 25);
   });
 
   const railX = 750;
   const railY = heroY;
   const railW = 246;
-  rect(railX, railY, railW, heroH, PALETTE.dark, 5);
+  const railH = heroH;
+  rect(railX, railY, railW, railH, PALETTE.dark, 5);
   text('THE DAY IN NUMBERS', railX + 14, railY + 16, 9.3, 'bold', PALETTE.white, railW - 28);
   rule(railX + 12, railY + 23, railX + railW - 12, railY + 23, '#506873', 0.8);
   const rowStart = railY + 25;
-  const rowH = (heroH - 28) / NUMBERS.length;
+  const rowH = (railH - 28) / NUMBERS.length;
   NUMBERS.forEach((item, i) => {
     const y = rowStart + i * rowH;
     if (i) rule(railX + 12, y, railX + railW - 12, y, '#334c56', 0.65);
-    text(item.value, railX + 13, y + 13.2, 12.1, 'bold', PALETTE.white, railW - 68);
-    text(`#${String(item.storyId).padStart(2, '0')}`, railX + railW - 13, y + 12.3, 7.4, 'bold', '#e2b56b', 26, 'end');
-    text(`${item.label}  ·  ${item.note}`, railX + 14, y + 23.7, 6.5, 'sans', '#d4dedb', railW - 28);
+    text(item.value, railX + 13, y + 12.2, 11.5, 'bold', PALETTE.white, railW - 68);
+    text(`#${String(item.storyId).padStart(2, '0')}`, railX + railW - 13, y + 11.6, 7.2, 'bold', '#e2b56b', 26, 'end');
+    text(`${item.label}  ·  ${item.note}`, railX + 14, y + 22.2, 6.15, 'sans', '#d4dedb', railW - 28);
   });
 
   const cards = STORIES.filter((story) => story.kind === 'card');
@@ -424,6 +531,9 @@ function buildSvg() {
   const cardW = (gridW - gridGapX * 4) / 5;
   const cardH = 93;
   const gridGapY = 7;
+  const artW = 48;
+  const artH = 52;
+  const textW = cardW - artW - 23;
   cards.forEach((story, i) => {
     const col = i % 5;
     const row = Math.floor(i / 5);
@@ -431,11 +541,11 @@ function buildSvg() {
     const y = gridY + row * (cardH + gridGapY);
     rect(x, y, cardW, cardH, PALETTE.card, 4, '#d0c7b9', 0.65);
     rect(x, y, 3, cardH, REGION_COLOR[story.region], 1.5);
-    text(`${String(story.id).padStart(2, '0')}  ·  ${story.region}  ·  ${story.status.split(' · ')[0]}`, x + 10, y + 12, 6.45, 'bold', REGION_COLOR[story.region], cardW - 44);
-    icon(story.icon, x + cardW - 30, y + 5, 23, REGION_COLOR[story.region]);
-    const titleLines = block(story.title, x + 10, y + 37, 10.6, 'serif', PALETTE.ink, cardW - 19, 2, 12.2);
-    const summaryY = y + 40 + titleLines * 12.2;
-    block(story.summary, x + 10, summaryY, 7.4, 'sans', PALETTE.ink, cardW - 19, 2, 8.5);
+    text(`${String(story.id).padStart(2, '0')}  ·  ${story.region}  ·  ${story.status.split(' · ')[0]}`, x + 10, y + 12, 6.45, 'bold', REGION_COLOR[story.region], textW);
+    cardIllustration(story, x + cardW - artW - 5, y + 20, artW, artH);
+    const titleLines = block(story.title, x + 10, y + 34, 10.1, 'serif', PALETTE.ink, textW, 3, 10.7);
+    const summaryY = y + 36 + titleLines * 10.7;
+    block(story.brief, x + 10, summaryY, 7.0, 'sans', PALETTE.ink, textW, 2, 8.0);
     text(story.source, x + 10, y + cardH - 5, 6.25, 'bold', PALETTE.muted, cardW - 19);
   });
 
